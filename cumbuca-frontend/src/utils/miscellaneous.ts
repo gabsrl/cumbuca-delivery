@@ -19,8 +19,11 @@ export function BRLCurrency(value: number) {
   return BRL_CURRENCY_FORMATTER.format(value);
 }
 
-export function WeightFormmater(weight: number) {
-  if (weight >= 1000) return { value: `${Math.round(weight / 1000)}`, unit: 'kg' }
+export const WeightFormmater = (weight: number) => {
 
-  return { value: `${Math.round(weight)}`, unit: 'g' }
+
+  if (weight >= 1000) return { value: `${Math.round(weight / 1000)}`, unit: 'kg', toString: () => `${Math.round(weight / 1000)}` }
+
+  return { value: `${Math.round(weight)}`, unit: 'g', toString: () => `${Math.round(weight)}g` }
+
 }
