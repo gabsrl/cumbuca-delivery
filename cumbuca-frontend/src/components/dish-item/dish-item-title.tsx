@@ -6,5 +6,14 @@ interface IDishDetailTitleProps {
 }
 
 export const Title = ({ children }: IDishDetailTitleProps) => {
-  return <Text>{children}</Text>;
+  return (
+    <Text
+      fontFamily="sans-serif"
+      color="darkerGreen.900"
+      fontSize={{ md: '2xl' }}
+      fontWeight="700"
+    >
+      {children}
+    </Text>
+  );
 };

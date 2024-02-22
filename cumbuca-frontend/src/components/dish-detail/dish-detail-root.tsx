@@ -5,5 +5,5 @@ interface IDishDetailRootProps {
   children: ReactNode;
 }
 export const Root = ({ children }: IDishDetailRootProps) => {
-  return <Box>{children}</Box>;
+  return <Box sx={{ width: '80%' }}>{children}</Box>;
 };

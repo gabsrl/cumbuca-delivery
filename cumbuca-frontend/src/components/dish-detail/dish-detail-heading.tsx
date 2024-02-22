@@ -11,8 +11,23 @@ export const Heading = ({
   category,
 }: IDishDetailHeadingProps) => {
   return (
-    <Box as="header">
-      <Box>
+    <Box
+      as="header"
+      sx={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+      }}
+    >
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
         <HeadingChakraUi>{title}</HeadingChakraUi>
         <Text>{price}</Text>
       </Box>

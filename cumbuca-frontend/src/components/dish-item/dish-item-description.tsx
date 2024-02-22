@@ -6,5 +6,9 @@ interface IDishDetailDescriptionProps {
 }
 
 export const Description = ({ children }: IDishDetailDescriptionProps) => {
-  return <Text>{children}</Text>;
+  return (
+    <Text fontFamily="sans-serif" width="100%" fontSize={{ md: 'lg' }}>
+      {children}
+    </Text>
+  );
 };

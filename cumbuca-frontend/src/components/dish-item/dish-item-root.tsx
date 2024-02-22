@@ -12,7 +12,11 @@ export const Root = ({ children }: IDishRootDetailProps) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        border: '1px solid red',
+        borderStyle: 'solid',
+        borderBottomWidth: '1px',
+        borderColor: 'gray.400',
+        mb: 4,
+        py: 4,
       }}
     >
       {children}

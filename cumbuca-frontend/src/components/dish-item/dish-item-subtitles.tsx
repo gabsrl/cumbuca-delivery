@@ -6,5 +6,5 @@ interface IDishDetailSubtitlesProps {
 }
 
 export const Subtitles = ({ children }: IDishDetailSubtitlesProps) => {
-  return <Text>{children}</Text>;
+  return <Text fontFamily="sans-serif">{children}</Text>;
 };
