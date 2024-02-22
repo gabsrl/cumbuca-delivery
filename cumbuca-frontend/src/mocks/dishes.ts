@@ -1,4 +1,4 @@
-import { Dish } from '../types/dish.type';
+import { Dish } from '../types/Dish.type';
 
 export const DISHES_MOCK: Dish[] = [
   {

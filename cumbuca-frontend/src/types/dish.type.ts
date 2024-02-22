@@ -1,3 +1,5 @@
+import { Nutrition } from './Nutrition.type';
+
 export type Dish = {
   id: number;
   name: string;
@@ -8,16 +10,9 @@ export type Dish = {
   image: File | string;
   isVegan?: boolean;
   servings?: number;
-  weight: number; // Peso em gramas
-  nutrition?: {
-    totalCalories: number; // Calorias totais
-    fatCalories: number; // Calorias de gordura
-    totalFat: number; // Gordura total em gramas
-    saturedFat: number; // Gordura saturada em gramas
-    transFat: number; // Gordura trans em gramas
-    sugar: number; // Açúcar em gramas
-  };
-  allergens: string; // Alergênicos presentes
+  weight: number;
+  nutrition?: Nutrition;
+  allergens: string;
 };
 
 export type CreateDishDto = Omit<Dish, 'id'>;
