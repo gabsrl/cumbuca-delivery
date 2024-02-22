@@ -8,7 +8,14 @@ interface IBadgeBaseProps extends BadgeProps {
 export const BadgeBase = ({ text, icon, ...rest }: IBadgeBaseProps) => {
   return (
     <Badge
-      sx={{ flexDirection: 'row', display: 'flex', alignItems: 'center' }}
+      p={2}
+      sx={{
+        gap: 1,
+        flexDirection: 'row',
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 'full',
+      }}
       {...rest}
     >
       {icon}
