@@ -4,7 +4,7 @@ import { CategoryItem } from '../../../components/category-item';
 
 import { DishItem } from '../../../components/dish-item';
 import { DISHES_MOCK } from '../../../mocks/dishes';
-import { Dish } from '../../../types/dish.type';
+import { Dish } from '../../../types/Dish.type';
 
 export const Dishes = () => {
   const dishesFetched: Dish[] = DISHES_MOCK;
@@ -24,9 +24,7 @@ export const Dishes = () => {
                 <DishItem.Subtitles>
                   {item.price} {item.servings}{' '}
                 </DishItem.Subtitles>
-                <DishItem.Description>
-                  {item.description}
-                </DishItem.Description>
+                <DishItem.Description>{item.description}</DishItem.Description>
               </DishItem.Content>
               <DishItem.DetailImage alt="" src="" />
             </DishItem.Body>
