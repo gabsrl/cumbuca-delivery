@@ -7,9 +7,12 @@ interface IBadgeBaseProps extends BadgeProps {
 }
 export const BadgeBase = ({ text, icon, ...rest }: IBadgeBaseProps) => {
   return (
-    <Badge {...rest}>
-      {' '}
-      {text} {icon}
+    <Badge
+      sx={{ flexDirection: 'row', display: 'flex', alignItems: 'center' }}
+      {...rest}
+    >
+      {icon}
+      {text}
     </Badge>
   );
 };
