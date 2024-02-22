@@ -6,5 +6,16 @@ interface IDishRootDetailProps {
 }
 
 export const Root = ({ children }: IDishRootDetailProps) => {
-  return <Box>{children}</Box>;
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        border: '1px solid red',
+      }}
+    >
+      {children}
+    </Box>
+  );
 };

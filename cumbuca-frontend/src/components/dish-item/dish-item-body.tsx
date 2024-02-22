@@ -6,5 +6,16 @@ interface IDishDetailBodyProps {
 }
 
 export const Body = ({ children }: IDishDetailBodyProps) => {
-  return <Box>{children}</Box>;
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      {children}
+    </Box>
+  );
 };

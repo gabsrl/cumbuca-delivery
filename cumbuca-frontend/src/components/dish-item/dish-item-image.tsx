@@ -8,7 +8,7 @@ interface IDishDetailDetailImageProps {
 export const DetailImage = ({ src, alt }: IDishDetailDetailImageProps) => {
   return (
     <Box>
-      <Image src={src} alt={alt} />
+      <Image borderRadius={4} width={100} height={100} src={src} alt={alt} />
     </Box>
   );
 };

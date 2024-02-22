@@ -6,5 +6,16 @@ interface IDishDetailContentProps {
 }
 
 export const Content = ({ children }: IDishDetailContentProps) => {
-  return <Box>{children}</Box>;
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+      }}
+    >
+      {children}
+    </Box>
+  );
 };
