@@ -4,16 +4,24 @@ import { CategoryItem } from '../../../components/category-item';
 
 import { DishItem } from '../../../components/dish-item';
 import { DISHES_MOCK } from '../../../mocks/dishes';
-import { Dish } from '../../../types/Dish.type';
+import { Dish } from '../../../types/dish.type';
+import {
+  BRLCurrency,
+  isPromo,
+  isVegan,
+  WeightFormmater,
+} from '../../../utils/miscellaneous';
+import { BadgeVegan } from '../../../components/badges/vegan-badge';
+import { BadgePromo } from '../../../components/badges/promo-badge ';
 
 export const Dishes = () => {
   const dishesFetched: Dish[] = DISHES_MOCK;
 
   return (
-    <Box>
-      <CategoryList>
+    <Box sx={{ width: '80%' }}>
+      {/* <CategoryList>
         <CategoryItem>Kitchen</CategoryItem>
-      </CategoryList>
+      </CategoryList> */}
 
       <Box>
         {dishesFetched.map((item) => (
@@ -22,16 +30,19 @@ export const Dishes = () => {
               <DishItem.Content>
                 <DishItem.Title>{item.name}</DishItem.Title>
                 <DishItem.Subtitles>
-                  {item.price} {item.servings}{' '}
+                  {BRLCurrency(item.price)} {WeightFormmater(item.weight).value}{' '}
+                  {WeightFormmater(item.weight).unit}
                 </DishItem.Subtitles>
                 <DishItem.Description>{item.description}</DishItem.Description>
               </DishItem.Content>
-              <DishItem.DetailImage alt="" src="" />
+              <DishItem.DetailImage
+                alt=""
+                src={`https://source.unsplash.com/random/?Food&${item.id}`}
+              />
             </DishItem.Body>
             <DishItem.PlusInfo>
-              {' '}
-              {item.isVegan && 'Vegano'}{' '}
-              {item.servings && `Serve ${item.servings}`}
+              {isVegan(item) && <BadgeVegan />}
+              {isPromo(item) && <BadgePromo />}
             </DishItem.PlusInfo>
           </DishItem.Root>
         ))}
