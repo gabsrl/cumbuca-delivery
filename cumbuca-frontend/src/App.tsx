@@ -1,15 +1,17 @@
 import theming from './theme';
 import './App.css';
-import { Button, ChakraProvider } from '@chakra-ui/react';
-import { Dishes } from './pages/menu/dishes';
+import { ChakraProvider } from '@chakra-ui/react';
+import { AppRoutes } from './routes/routes';
 
 function App() {
   return (
     <ChakraProvider theme={theming}>
-      <Dishes />
-      <Button backgroundColor="goldenYellow.800">teste</Button>
+      <AppRoutes />
     </ChakraProvider>
   );
 }
 
 export default App;
+{
+  /* <Button backgroundColor="goldenYellow.800">teste</Button> */
+}
