@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Button,
   HStack,
@@ -11,6 +12,8 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  NumberInput,
+  NumberInputField,
   Text,
 } from '@chakra-ui/react';
 import { LuFilter } from 'react-icons/lu';
@@ -47,6 +50,7 @@ export const Dishes = () => {
 
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
+  const [pageInput, setPageInput] = useState(5);
 
   const listLength = () => Math.ceil(filteredDishList.length / itemsPerPage);
   const isLastPage = () => currentPage + 1 >= listLength();
@@ -146,6 +150,11 @@ export const Dishes = () => {
             </MenuList>
           </Menu>
         </HStack>
+        {selectedFilterCategory && (
+          <Badge borderRadius="lg" p={2} ml={4}>
+            Filtro: {selectedFilterCategory}
+          </Badge>
+        )}
 
         {paginateData(filteredDishList, currentPage, itemsPerPage).map(
           (item) => (
@@ -191,6 +200,19 @@ export const Dishes = () => {
       </Box>
 
       <HStack mt={8} mb={4}>
+        <Box>
+          <NumberInput
+            borderWidth="1px"
+            value={itemsPerPage}
+            onChange={(value) => {
+              setItemsPerPage(Number(value ? value : 1));
+            }}
+            min={1}
+          >
+            <NumberInputField />
+          </NumberInput>
+        </Box>
+
         {!isFirstPage() && (
           <IconButton
             onClick={previousPage}
