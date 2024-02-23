@@ -6,7 +6,7 @@ interface IDishDetailBannerProps {
 export const Banner = ({ src, alt }: IDishDetailBannerProps) => {
   return (
     <Box>
-      <Image src={src} alt={alt} />
+      <Image src={src} alt={alt} borderRadius="md" />
     </Box>
   );
 };
