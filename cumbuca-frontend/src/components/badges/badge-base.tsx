@@ -9,12 +9,17 @@ export const BadgeBase = ({ text, icon, ...rest }: IBadgeBaseProps) => {
   return (
     <Badge
       p={2}
+      fontSize={{ md: 'xs' }}
       sx={{
+        fontFamily: 'sans-serif',
         gap: 1,
         flexDirection: 'row',
         display: 'flex',
         alignItems: 'center',
         borderRadius: 'full',
+        textTransform: 'capitalize',
+        fontWeight: 600,
+        color: 'gray.600',
       }}
       {...rest}
     >
