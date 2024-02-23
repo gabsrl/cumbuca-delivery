@@ -1,0 +1,214 @@
+{
+  "dishes": [
+    {
+      "id": "1",
+      "name": "Tambaqui Assado",
+      "description": "Peixe Tambaqui assado inteiro com temperos regionais.",
+      "price": 120,
+      "category": "Peixe",
+      "enable": true,
+      "image": "tambaqui_assado.jpg",
+      "weight": 2000,
+      "isVegan": false,
+      "servings": 8,
+      "nutrition": {
+        "totalCalories": 1100,
+        "fatCalories": 200,
+        "totalFat": 22,
+        "saturatedFat": 5,
+        "transFat": 0,
+        "sugar": 0
+      },
+      "allergens": "Peixe"
+    },
+    {
+      "id": "2",
+      "name": "Pirarucu de Casaca",
+      "description": "Tradicional prato amazônico com pirarucu seco, bananas, e queijo coalho.",
+      "price": 150,
+      "category": "Peixe",
+      "enable": true,
+      "image": "pirarucu_de_casaca.jpg",
+      "weight": 1500,
+      "isVegan": false,
+      "servings": 2,
+      "nutrition": {
+        "totalCalories": 1200,
+        "fatCalories": 300,
+        "totalFat": 33,
+        "saturatedFat": 14,
+        "transFat": 0,
+        "sugar": 20
+      },
+      "allergens": "Peixe, Lactose"
+    },
+    {
+      "id": "3",
+      "name": "Tacacá",
+      "description": "Caldo quente de tucupi com jambu, camarão seco e goma de tapioca.",
+      "price": 35,
+      "category": "Sopa",
+      "enable": true,
+      "image": "tacaca.jpg",
+      "isVegan": false,
+      "servings": 1,
+      "weight": 500,
+      "nutrition": {
+        "totalCalories": 200,
+        "fatCalories": 20,
+        "totalFat": 2,
+        "saturatedFat": 0.5,
+        "transFat": 0,
+        "sugar": 3
+      },
+      "allergens": "Camarão"
+    },
+    {
+      "id": "4",
+      "name": "Coxinha de Tucunaré",
+      "description": "Deliciosas coxinhas recheadas com carne de tucunaré desfiado.",
+      "price": 50,
+      "category": "Salgado",
+      "enable": true,
+      "image": "coxinha_tucunare.jpg",
+      "weight": 300,
+      "isVegan": false,
+      "servings": 1,
+      "nutrition": {
+        "totalCalories": 450,
+        "fatCalories": 150,
+        "totalFat": 16,
+        "saturatedFat": 4,
+        "transFat": 0,
+        "sugar": 2
+      },
+      "allergens": "Peixe, Glúten"
+    },
+    {
+      "id": "5",
+      "name": "Banana Pacovã Frita",
+      "description": "Fatias de banana pacovã fritas até ficarem douradas e crocantes.",
+      "price": 25,
+      "category": "Acompanhamento",
+      "enable": true,
+      "image": "banana_pacova_frita.jpg",
+      "isVegan": true,
+      "servings": 1,
+      "weight": 200,
+      "nutrition": {
+        "totalCalories": 300,
+        "fatCalories": 100,
+        "totalFat": 11,
+        "saturatedFat": 1.5,
+        "transFat": 0,
+        "sugar": 14
+      },
+      "allergens": "Nenhum"
+    },
+    {
+      "id": "6",
+      "name": "Açaí na Tigela",
+      "description": "Açaí batido servido na tigela com granola, banana e mel.",
+      "price": 20,
+      "category": "Sobremesa",
+      "enable": true,
+      "image": "acai_na_tigela.jpg",
+      "isVegan": true,
+      "servings": 1,
+      "weight": 500,
+      "nutrition": {
+        "totalCalories": 350,
+        "fatCalories": 50,
+        "totalFat": 5,
+        "saturatedFat": 1,
+        "transFat": 0,
+        "sugar": 25
+      },
+      "allergens": "Nenhum"
+    },
+    {
+      "id": "7",
+      "name": "Farofa de Banana",
+      "description": "Farofa crocante com pedaços de banana da terra.",
+      "price": 15,
+      "category": "Acompanhamento",
+      "enable": true,
+      "image": "farofa_banana.jpg",
+      "isVegan": true,
+      "servings": 1,
+      "weight": 250,
+      "nutrition": {
+        "totalCalories": 500,
+        "fatCalories": 200,
+        "totalFat": 22,
+        "saturatedFat": 7,
+        "transFat": 0,
+        "sugar": 12
+      },
+      "allergens": "Glúten"
+    },
+    {
+      "id": "8",
+      "name": "Moqueca de Camarão",
+      "description": "Camarão cozido em molho de tomate, leite de coco e temperos.",
+      "price": 130,
+      "category": "Marisco",
+      "enable": true,
+      "image": "moqueca_camarao.jpg",
+      "isVegan": false,
+      "servings": 2,
+      "weight": 700,
+      "nutrition": {
+        "totalCalories": 600,
+        "fatCalories": 250,
+        "totalFat": 27,
+        "saturatedFat": 10,
+        "transFat": 0,
+        "sugar": 8
+      },
+      "allergens": "Camarão"
+    },
+    {
+      "id": "9",
+      "name": "Maniçoba",
+      "description": "Um prato feito com folhas de mandioca e carnes diversas, cozidas lentamente em panela de barro.",
+      "price": 25.75,
+      "category": "Cozido",
+      "enable": true,
+      "image": "fileManicoba",
+      "isVegan": false,
+      "servings": 1,
+      "weight": 350,
+      "nutrition": {
+        "totalCalories": 280,
+        "fatCalories": 120,
+        "totalFat": 14,
+        "saturatedFat": 4,
+        "transFat": 0,
+        "sugar": 2
+      },
+      "allergens": "Carne de porco"
+    },
+    {
+      "id": 9592,
+      "allergens": "aaa",
+      "nutrition": {
+        "sugar": 10,
+        "transFat": 10,
+        "saturatedFat": 10,
+        "totalFat": 10,
+        "fatCalories": 10,
+        "totalCalories": 10
+      },
+      "weight": 10,
+      "servings": 10,
+      "isVegan": "1",
+      "image": "aaaaa",
+      "enable": "0",
+      "category": "Salgado",
+      "price": 10,
+      "description": "aaaa",
+      "name": "aaaa"
+    }
+  ]
+}
