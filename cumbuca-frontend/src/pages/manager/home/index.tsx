@@ -1,6 +1,6 @@
 import DishFormModal from '../add-dish-modal';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useCustom } from '@table-library/react-table-library/table';
 import { CompactTable } from '@table-library/react-table-library/compact';
@@ -32,18 +32,19 @@ import {
   FaChevronLeft,
 } from 'react-icons/fa';
 import { DISHES_MOCK } from '../../../mocks/dishes';
-import { CreateDishDto } from '../../../types/dish.type';
+import { CreateDishDto, Dish } from '../../../types/dish.type';
 import { MdOutlineAdd } from 'react-icons/md';
 import {
   COLUMNS_DISHES,
   SortKeys,
   TABLE_LABELS_COLUMN_MAPPER,
 } from './table-helpers';
+import { createDish, getAllDishes } from '../../../services/dish.service';
 
 const nodes = DISHES_MOCK;
 
 export const Home = () => {
-  const [data, setData] = useState({ nodes });
+  const [data, setData] = useState<{ nodes: Dish[] }>({ nodes: [] });
   const [pageInput, setPageInput] = useState(5);
 
   const [isOpenAddDish, setIsOpenAddDish] = useState(false);
@@ -56,6 +57,15 @@ export const Home = () => {
       setHiddenColumns(hiddenColumns.concat(column));
     }
   };
+
+  const loadDishes = async () => {
+    const result = await getAllDishes();
+    setData({ nodes: result.data });
+  };
+
+  useEffect(() => {
+    loadDishes();
+  }, []);
 
   const chakraTheme = getTheme({
     ...DEFAULT_OPTIONS,
@@ -135,8 +145,14 @@ export const Home = () => {
 
   const COLUMNS = COLUMNS_DISHES(hiddenColumns);
 
-  const addNewDish = (input: CreateDishDto) => {
-    console.log('input', input);
+  const addNewDish = async (input: CreateDishDto) => {
+    try {
+      const response = await createDish(input);
+      await loadDishes();
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
