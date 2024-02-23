@@ -1,6 +1,5 @@
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import {
   Button,
   Modal,
@@ -256,7 +255,7 @@ export const DishFormModal = ({ isOpen, onClose, onSubmit }: DishFormProps) => {
               }}
               mt={2}
             >
-              <FormControl isInvalid={!!errors.isVegan}>
+              <FormControl isInvalid={!!errors.enable}>
                 <FormLabel>Ativo</FormLabel>
                 <Controller
                   name="enable"
@@ -274,7 +273,7 @@ export const DishFormModal = ({ isOpen, onClose, onSubmit }: DishFormProps) => {
                     </RadioGroup>
                   )}
                 />
-                <FormErrorMessage>{errors.isVegan?.message}</FormErrorMessage>
+                <FormErrorMessage>{errors.enable?.message}</FormErrorMessage>
               </FormControl>
 
               <FormControl isInvalid={!!errors.isVegan}>
