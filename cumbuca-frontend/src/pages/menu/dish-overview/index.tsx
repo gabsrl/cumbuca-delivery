@@ -1,14 +1,23 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import { DishDetail } from '../../../components/dish-detail';
 import { GeneralNutrition } from '../../../components/general-nutrition';
-import { DISHES_MOCK } from '../../../mocks/dishes';
 import { BadgeVegan } from '../../../components/badges/vegan-badge';
 import { isPromo } from '../../../utils/miscellaneous';
 import { BadgePromo } from '../../../components/badges/promo-badge ';
+import { Dish } from '../../../types/dish.type';
+import { useEffect, useState } from 'react';
+import { getDishById } from '../../../services/dish.service';
+import { useParams } from 'react-router-dom';
 
 export const DishOverviewPage = () => {
-  const selectedDish = DISHES_MOCK[5];
-  return (
+  const { id } = useParams();
+  const [selectedDish, setDish] = useState<Dish>();
+
+  useEffect(() => {
+    getDishById(Number(id)).then((res) => setDish(res.data));
+  }, [id]);
+
+  return id && selectedDish ? (
     <DishDetail.Root>
       <DishDetail.Banner
         src={`https://source.unsplash.com/random/?Food&4`}
@@ -66,5 +75,7 @@ export const DishOverviewPage = () => {
         )}
       </Box>
     </DishDetail.Root>
+  ) : (
+    <Heading>Nenhum resultado encontrado</Heading>
   );
 };

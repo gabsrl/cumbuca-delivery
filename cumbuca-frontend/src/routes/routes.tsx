@@ -8,7 +8,7 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dishes />} />
-        <Route path="/dish" element={<DishOverviewPage />} />
+        <Route path="/dish/:id" element={<DishOverviewPage />} />
         <Route path="/manager" element={<Home />} />
       </Routes>
     </BrowserRouter>
