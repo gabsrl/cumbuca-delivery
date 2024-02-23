@@ -30,23 +30,35 @@ export const DishOverviewPage = () => {
           title={selectedDish.name}
         />
         <DishDetail.Description>
-          {selectedDish.description}
+          <Text
+            color={'gray.700'}
+            fontFamily="sans-serif"
+            fontSize={{ md: 'lg' }}
+          >
+            {' '}
+            {selectedDish.description}
+          </Text>
         </DishDetail.Description>
         <DishDetail.AdditionalInformation>
           {selectedDish.isVegan && <BadgeVegan />}
           {isPromo(selectedDish) && <BadgePromo />}
         </DishDetail.AdditionalInformation>
 
-        <Text>Nutrição e alergenos</Text>
-        <Text>Contém {selectedDish.allergens}</Text>
+        <Text fontWeight={600} fontSize={{ md: 'lg' }}>
+          Nutrição e Alérgenos
+        </Text>
+        <Text color="gray.500" fontSize={{ md: 'md' }}>
+          Contém: {selectedDish.allergens}
+        </Text>
 
         {selectedDish.nutrition && (
           <Box
             sx={{
               display: 'flex',
               width: '100%',
-              jusitifyContent: 'center',
+              justifyContent: 'center',
               alignItems: 'center',
+              mt: 5,
             }}
           >
             <GeneralNutrition nutritionInfo={selectedDish.nutrition} />

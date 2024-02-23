@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import { CategoryList } from '../../../components/category-list';
 import { CategoryItem } from '../../../components/category-item';
+import { PiBowlFoodFill } from 'react-icons/pi';
 
 import { DishItem } from '../../../components/dish-item';
 import { DISHES_MOCK } from '../../../mocks/dishes';
@@ -30,11 +31,18 @@ export const Dishes = () => {
               <DishItem.Content>
                 <DishItem.Title>{item.name}</DishItem.Title>
                 <DishItem.Subtitles>
-                  <Text fontWeight="600" color="gray.700" display={'inline'}>
-                    {BRLCurrency(item.price)}{' '}
-                  </Text>
-                  <Text display={'inline'} color="gray.500">
-                    // {WeightFormmater(item.weight).toString()}
+                  <Text fontWeight="600" color="gray.700">
+                    {BRLCurrency(item.price)}
+                  </Text>{' '}
+                  |
+                  <Text
+                    color="gray.500"
+                    display={'flex'}
+                    alignItems="center"
+                    gap={1}
+                  >
+                    <PiBowlFoodFill color="" />
+                    {WeightFormmater(item.weight).toString()}
                   </Text>
                 </DishItem.Subtitles>
                 <Box>
