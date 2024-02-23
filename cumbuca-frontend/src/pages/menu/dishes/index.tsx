@@ -6,16 +6,22 @@ import {
   Input,
   InputGroup,
   InputRightAddon,
-  Stack,
+  Menu,
+  MenuButton,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
   Text,
 } from '@chakra-ui/react';
-import { CategoryList } from '../../../components/category-list';
-import { CategoryItem } from '../../../components/category-item';
+import { LuFilter } from 'react-icons/lu';
+
 import { PiBowlFoodFill } from 'react-icons/pi';
 import { MdSearch } from 'react-icons/md';
 
+import { FaFilter } from 'react-icons/fa6';
+
 import { DishItem } from '../../../components/dish-item';
-import { DISHES_MOCK } from '../../../mocks/dishes';
+
 import { Dish } from '../../../types/dish.type';
 import {
   BRLCurrency,
@@ -29,14 +35,18 @@ import { useEffect, useState } from 'react';
 import { getAllDishes } from '../../../services/dish.service';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { CATEGORIES_MOCK } from '../../../mocks/categories';
 
 export const Dishes = () => {
   const navigateHook = useNavigate();
+  const [selectedFilterCategory, setSelectedFilterCategory] =
+    useState<string>('');
   const [dishesList, setDishesList] = useState<Dish[]>([]);
   const [filteredDishList, setFilteredDishList] = useState<Dish[]>([]);
+  const [searchDish, setSearchDish] = useState('');
+
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchDish, setSearchDish] = useState('');
 
   const listLength = () => Math.ceil(filteredDishList.length / itemsPerPage);
   const isLastPage = () => currentPage + 1 >= listLength();
@@ -59,13 +69,17 @@ export const Dishes = () => {
 
   const findByFilters = () => {
     setCurrentPage(0);
-    if (searchDish.length === 0) {
-      setFilteredDishList(dishesList);
-    } else {
-      setFilteredDishList(
-        dishesList.filter((dishItem) => dishItem.name.includes(searchDish)),
+    let dishUpdates = dishesList;
+    if (selectedFilterCategory !== '')
+      dishUpdates = dishesList.filter(
+        (dishItem) => dishItem.category === selectedFilterCategory,
       );
-    }
+    if (searchDish.length !== 0)
+      dishUpdates = dishUpdates.filter((dishItem) =>
+        dishItem.name.includes(searchDish),
+      );
+
+    setFilteredDishList(dishUpdates);
   };
 
   const navigate = (id: number) => {
@@ -80,6 +94,10 @@ export const Dishes = () => {
     });
   }, []);
 
+  useEffect(() => {
+    findByFilters();
+  }, [selectedFilterCategory]);
+
   return (
     <Box
       width={{ sm: '80%', md: '70%', lg: '50%', xl: '60%' }}
@@ -90,14 +108,11 @@ export const Dishes = () => {
         justifyContent: 'center',
       }}
     >
-      {/* <CategoryList>
-        <CategoryItem>Kitchen</CategoryItem>
-      </CategoryList> */}
-
       <Box>
         <HStack spacing={3} my={4}>
           <InputGroup>
             <Input
+              borderWidth="2px"
               variant="outline"
               placeholder="Pesquiser por nome de pratos..."
               value={searchDish}
@@ -107,6 +122,29 @@ export const Dishes = () => {
               <Button onClick={findByFilters} rightIcon={<MdSearch />} />
             </InputRightAddon>
           </InputGroup>
+
+          <Menu>
+            <MenuButton aria-label="Botão para exibir filtros de categorias de pratos.">
+              {selectedFilterCategory ? <FaFilter /> : <LuFilter />}
+            </MenuButton>
+
+            <MenuList>
+              <MenuOptionGroup
+                type="radio"
+                title="Categoria para filtrar"
+                onChange={(value) => setSelectedFilterCategory(value as string)}
+              >
+                <MenuItemOption key={'limpar'} value={''}>
+                  Sem filtros aplicados
+                </MenuItemOption>
+                {CATEGORIES_MOCK.map((itemCat) => (
+                  <MenuItemOption key={itemCat} value={itemCat}>
+                    {itemCat}
+                  </MenuItemOption>
+                ))}
+              </MenuOptionGroup>
+            </MenuList>
+          </Menu>
         </HStack>
 
         {paginateData(filteredDishList, currentPage, itemsPerPage).map(

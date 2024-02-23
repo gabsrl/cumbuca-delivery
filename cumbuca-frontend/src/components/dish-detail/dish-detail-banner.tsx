@@ -5,8 +5,13 @@ interface IDishDetailBannerProps {
 }
 export const Banner = ({ src, alt }: IDishDetailBannerProps) => {
   return (
-    <Box>
-      <Image src={src} alt={alt} borderRadius="md" />
-    </Box>
+    // <Box width={{ xl: '1024px', lg: '768px', md: '100%' }}>
+    <Image
+      w="100%"
+      height={{ xl: '600px', lg: '480px', md: '320px' }}
+      objectFit="contain"
+      src={src}
+      alt={alt}
+    />
   );
 };

@@ -24,55 +24,57 @@ export const DishOverviewPage = () => {
         alt=""
       />
 
-      <Box
-        px={6}
-        sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-        }}
-      >
-        <DishDetail.Heading
-          category={selectedDish.category}
-          price={selectedDish.price}
-          title={selectedDish.name}
-        />
-        <DishDetail.Description>
-          <Text
-            color={'gray.700'}
-            fontFamily="sans-serif"
-            fontSize={{ md: 'lg' }}
-          >
-            {' '}
-            {selectedDish.description}
+      <Box sx={{ display: 'flex' }}>
+        <Box
+          px={6}
+          sx={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+          }}
+        >
+          <DishDetail.Heading
+            category={selectedDish.category}
+            price={selectedDish.price}
+            title={selectedDish.name}
+          />
+          <DishDetail.Description>
+            <Text
+              color={'gray.700'}
+              fontFamily="sans-serif"
+              fontSize={{ md: 'lg' }}
+            >
+              {' '}
+              {selectedDish.description}
+            </Text>
+          </DishDetail.Description>
+          <DishDetail.AdditionalInformation>
+            {selectedDish.isVegan && <BadgeVegan />}
+            {isPromo(selectedDish) && <BadgePromo />}
+          </DishDetail.AdditionalInformation>
+
+          <Text fontWeight={600} fontSize={{ md: 'lg' }}>
+            Nutrição e Alérgenos
           </Text>
-        </DishDetail.Description>
-        <DishDetail.AdditionalInformation>
-          {selectedDish.isVegan && <BadgeVegan />}
-          {isPromo(selectedDish) && <BadgePromo />}
-        </DishDetail.AdditionalInformation>
+          <Text color="gray.500" fontSize={{ md: 'md' }}>
+            Contém: {selectedDish.allergens}
+          </Text>
 
-        <Text fontWeight={600} fontSize={{ md: 'lg' }}>
-          Nutrição e Alérgenos
-        </Text>
-        <Text color="gray.500" fontSize={{ md: 'md' }}>
-          Contém: {selectedDish.allergens}
-        </Text>
-
-        {selectedDish.nutrition && (
-          <Box
-            sx={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-              mt: 5,
-            }}
-          >
-            <GeneralNutrition nutritionInfo={selectedDish.nutrition} />
-          </Box>
-        )}
+          {selectedDish.nutrition && (
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                mt: 10,
+              }}
+            >
+              <GeneralNutrition nutritionInfo={selectedDish.nutrition} />
+            </Box>
+          )}
+        </Box>
       </Box>
     </DishDetail.Root>
   ) : (

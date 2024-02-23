@@ -7,7 +7,7 @@ interface IDishDetailRootProps {
 export const Root = ({ children }: IDishDetailRootProps) => {
   return (
     <Box
-      width={{ xl: '1024px', lg: '768px', md: '100%' }}
+      width={{ xl: '1440px', lg: '1024px', md: '100%' }}
       sx={{
         display: 'flex',
         flexDirection: 'column',

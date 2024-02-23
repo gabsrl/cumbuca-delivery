@@ -5,12 +5,13 @@ const boxStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  height: '60px',
+  height: '80px',
   borderStyle: 'solid',
   borderBottomWidth: '1px',
   borderColor: 'gray.300',
   paddingLeft: 2,
   paddingRight: 2,
+  textAlign: 'center',
 };
 
 const borderSeparator = {
@@ -25,8 +26,14 @@ export interface IGeneralNutrition {
   nutritionInfo: Nutrition;
 }
 export const GeneralNutrition = ({ nutritionInfo }: IGeneralNutrition) => {
-  const { fatCalories, saturedFat, sugar, totalCalories, transFat, totalFat } =
-    nutritionInfo;
+  const {
+    fatCalories,
+    saturatedFat,
+    sugar,
+    totalCalories,
+    transFat,
+    totalFat,
+  } = nutritionInfo;
   return (
     <SimpleGrid columns={3} spacing={0}>
       <Box sx={{ ...boxStyle, ...borderSeparator }}>
@@ -45,7 +52,7 @@ export const GeneralNutrition = ({ nutritionInfo }: IGeneralNutrition) => {
       </Box>
 
       <Box sx={{ ...boxStyle, ...borderSeparator }}>
-        <Text sx={textStyle}>{saturedFat}g</Text>
+        <Text sx={textStyle}>{saturatedFat}g</Text>
         <Text>Gordura saturada</Text>
       </Box>
 
@@ -58,6 +65,22 @@ export const GeneralNutrition = ({ nutritionInfo }: IGeneralNutrition) => {
         <Text sx={textStyle}>{sugar}g</Text>
         <Text>Açucar</Text>
       </Box>
+      <Box
+        sx={{
+          ...boxStyle,
+          ...borderSeparator,
+          borderBottomWidth: 0,
+          height: '40px',
+        }}
+      />
+      <Box
+        sx={{
+          ...boxStyle,
+          ...borderSeparator,
+          borderBottomWidth: 0,
+          height: '40px',
+        }}
+      />
     </SimpleGrid>
   );
 };

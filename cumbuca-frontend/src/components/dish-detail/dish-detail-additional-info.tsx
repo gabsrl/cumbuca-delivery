@@ -7,5 +7,5 @@ interface IDishDetailAdditionalInformationProps {
 export const AdditionalInformation = ({
   children,
 }: IDishDetailAdditionalInformationProps) => {
-  return <Box sx={{ display: 'flex', gap: 3, mb: 10 }}>{children}</Box>;
+  return <Box sx={{ display: 'flex', gap: 3, mb: 4 }}>{children}</Box>;
 };
