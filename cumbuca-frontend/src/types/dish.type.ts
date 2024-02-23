@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Nutrition } from './Nutrition.type';
 
 export type Dish = {
@@ -6,12 +7,12 @@ export type Dish = {
   description: string;
   price: number;
   category: string;
-  enable: boolean;
-  image: File | string;
-  isVegan?: boolean;
-  servings?: number;
+  enable: '1' | '0';
+  image: any;
+  isVegan: '1' | '0';
+  servings: number;
   weight: number;
-  nutrition?: Nutrition;
+  nutrition: Nutrition;
   allergens: string;
 };
 

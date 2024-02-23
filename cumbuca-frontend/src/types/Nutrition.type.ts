@@ -2,7 +2,7 @@ export type Nutrition = {
   totalCalories: number;
   fatCalories: number;
   totalFat: number;
-  saturedFat: number;
+  saturatedFat: number;
   transFat: number;
   sugar: number;
 };
