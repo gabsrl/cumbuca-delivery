@@ -5,5 +5,19 @@ interface IDishDetailRootProps {
   children: ReactNode;
 }
 export const Root = ({ children }: IDishDetailRootProps) => {
-  return <Box sx={{ width: '80%' }}>{children}</Box>;
+  return (
+    <Box
+      sx={{
+        width: '80%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // border: '1px solid red',
+        paddingBottom: 5,
+      }}
+    >
+      {children}
+    </Box>
+  );
 };

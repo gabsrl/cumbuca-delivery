@@ -5,5 +5,5 @@ interface IDishDetaiDescriptionProps {
   children: ReactNode;
 }
 export const Description = ({ children }: IDishDetaiDescriptionProps) => {
-  return <Box>{children}</Box>;
+  return <Box mb={5}>{children}</Box>;
 };

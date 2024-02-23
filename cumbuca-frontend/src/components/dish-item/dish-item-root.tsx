@@ -14,7 +14,7 @@ export const Root = ({ children }: IDishRootDetailProps) => {
         alignItems: 'flex-start',
         borderStyle: 'solid',
         borderBottomWidth: '1px',
-        borderColor: 'gray.400',
+        borderColor: 'gray.200',
         mb: 4,
         py: 4,
       }}

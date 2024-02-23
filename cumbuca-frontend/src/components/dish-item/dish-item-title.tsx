@@ -9,7 +9,7 @@ export const Title = ({ children }: IDishDetailTitleProps) => {
   return (
     <Text
       fontFamily="sans-serif"
-      color="darkerGreen.900"
+      color="darkerGreen.800"
       fontSize={{ md: '2xl' }}
       fontWeight="700"
     >

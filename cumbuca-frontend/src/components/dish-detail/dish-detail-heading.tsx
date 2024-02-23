@@ -1,4 +1,5 @@
 import { Box, Text, Heading as HeadingChakraUi } from '@chakra-ui/react';
+import { BRLCurrency } from '../../utils/miscellaneous';
 
 interface IDishDetailHeadingProps {
   title: string;
@@ -12,6 +13,7 @@ export const Heading = ({
 }: IDishDetailHeadingProps) => {
   return (
     <Box
+      mb={15}
       as="header"
       sx={{
         width: '100%',
@@ -28,8 +30,10 @@ export const Heading = ({
           justifyContent: 'space-between',
         }}
       >
-        <HeadingChakraUi>{title}</HeadingChakraUi>
-        <Text>{price}</Text>
+        <HeadingChakraUi color="darkerGreen.800">{title}</HeadingChakraUi>
+        <Text color="gray.700" fontWeight={600} fontSize={{ md: 'xl' }}>
+          {BRLCurrency(price)}
+        </Text>
       </Box>
       <Text>{category}</Text>
     </Box>
