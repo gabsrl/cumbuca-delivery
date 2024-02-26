@@ -13,3 +13,6 @@ export const createDish = (dishInput: CreateDishDto) =>
 
 export const getDishById = (id: number) =>
   api.get<Dish>(`${endpointUrl}/${id}`);
+
+
+export const updateDish = (id: number, payload: Dish) => api.put(`${endpointUrl}/${id}`, payload);

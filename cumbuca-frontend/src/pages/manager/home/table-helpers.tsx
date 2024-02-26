@@ -1,5 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dish } from '../../../types/dish.type';
+import { Stack, Switch } from '@chakra-ui/react';
+import { TrueOrFalse } from '../../../types/miscellaneous.types';
+
+interface ISwitchEnableProps {
+  status: Dish;
+  onChange: (value: Dish) => void;
+}
+export const SwitchEnable = ({ status, onChange }: ISwitchEnableProps) => {
+  return (
+    <Stack alignItems="center" direction="row">
+      <Switch
+        isChecked={status.enable === '1'}
+        value={status.enable}
+        onChange={({ target }) =>
+          onChange(
+            (target.value as TrueOrFalse) === '1'
+              ? { ...status, enable: '0' }
+              : { ...status, enable: '1' },
+          )
+        }
+      />
+    </Stack>
+  );
+};
 
 export const TABLE_LABELS_COLUMN_MAPPER = {
   name: 'Nome',
@@ -81,7 +105,10 @@ export const SortKeys = {
   },
 };
 
-export const COLUMNS_DISHES = (columnsToHide: string[]) => [
+export const COLUMNS_DISHES = (
+  columnsToHide: string[],
+  handleActive: (dishId: number, updateStatus: Dish) => Promise<void>,
+) => [
   {
     label: TABLE_LABELS_COLUMN_MAPPER.name,
     hide: columnsToHide.includes(TABLE_LABELS_COLUMN_MAPPER.name),
@@ -103,7 +130,9 @@ export const COLUMNS_DISHES = (columnsToHide: string[]) => [
   {
     label: TABLE_LABELS_COLUMN_MAPPER.active,
     hide: columnsToHide.includes(TABLE_LABELS_COLUMN_MAPPER.active),
-    renderCell: (item: Dish) => (item.enable ? 'Sim' : 'Não'),
+    renderCell: (item: Dish) => (
+      <SwitchEnable status={item} onChange={(v) => handleActive(item.id, v)} />
+    ),
     sort: { sortKey: SortKeys.ACTIVE.column },
   },
 

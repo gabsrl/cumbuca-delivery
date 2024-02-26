@@ -39,7 +39,12 @@ import {
   SortKeys,
   TABLE_LABELS_COLUMN_MAPPER,
 } from './table-helpers';
-import { createDish, getAllDishes } from '../../../services/dish.service';
+import {
+  createDish,
+  getAllDishes,
+  updateDish,
+} from '../../../services/dish.service';
+import { TrueOrFalse } from '../../../types/miscellaneous.types';
 
 const nodes = DISHES_MOCK;
 
@@ -109,6 +114,11 @@ export const Home = () => {
     pagination.fns.onSetPage(0);
   }
 
+  const handleActive = async (id: number, payload: Dish) => {
+    const res = await updateDish(id, payload);
+    console.log('res', res);
+  };
+
   const sort = useSort(
     data,
     {
@@ -143,7 +153,7 @@ export const Home = () => {
     node.name.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const COLUMNS = COLUMNS_DISHES(hiddenColumns);
+  const COLUMNS = COLUMNS_DISHES(hiddenColumns, handleActive);
 
   const addNewDish = async (input: CreateDishDto) => {
     try {

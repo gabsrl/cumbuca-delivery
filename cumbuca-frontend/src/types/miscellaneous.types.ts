@@ -1,0 +1,1 @@
+export type TrueOrFalse = '1' | '0';

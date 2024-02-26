@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { TrueOrFalse } from './miscellaneous.types';
 import { Nutrition } from './Nutrition.type';
 
 export type Dish = {
@@ -7,9 +8,9 @@ export type Dish = {
   description: string;
   price: number;
   category: string;
-  enable: '1' | '0';
+  enable: TrueOrFalse;
   image: any;
-  isVegan: '1' | '0';
+  isVegan: TrueOrFalse;
   servings: number;
   weight: number;
   nutrition: Nutrition;
