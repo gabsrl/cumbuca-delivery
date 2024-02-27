@@ -1,8 +1,6 @@
 import DishFormModal from '../add-dish-modal';
-
 import { useEffect, useState } from 'react';
 
-import { useCustom } from '@table-library/react-table-library/table';
 import { CompactTable } from '@table-library/react-table-library/compact';
 import { useTheme } from '@table-library/react-table-library/theme';
 import {
@@ -14,15 +12,14 @@ import { useSort } from '@table-library/react-table-library/sort';
 import { usePagination } from '@table-library/react-table-library/pagination';
 
 import {
-  Text,
   Box,
   HStack,
   InputGroup,
   InputLeftElement,
   Input,
-  Checkbox,
   IconButton,
   Button,
+  useToast,
 } from '@chakra-ui/react';
 import {
   FaSearch,
@@ -31,37 +28,24 @@ import {
   FaChevronUp,
   FaChevronLeft,
 } from 'react-icons/fa';
-import { DISHES_MOCK } from '../../../mocks/dishes';
 import { CreateDishDto, Dish } from '../../../types/dish.type';
 import { MdOutlineAdd } from 'react-icons/md';
-import {
-  COLUMNS_DISHES,
-  SortKeys,
-  TABLE_LABELS_COLUMN_MAPPER,
-} from './table-helpers';
+import { COLUMNS_DISHES, COLUMNS_NAME, SortKeys } from './table-helpers';
 import {
   createDish,
   getAllDishes,
   updateDish,
 } from '../../../services/dish.service';
-import { TrueOrFalse } from '../../../types/miscellaneous.types';
-
-const nodes = DISHES_MOCK;
+import { MenuFilterColumns } from './menu-table-columns';
 
 export const Home = () => {
+  const toastChakraHook = useToast();
+
   const [data, setData] = useState<{ nodes: Dish[] }>({ nodes: [] });
   const [pageInput, setPageInput] = useState(5);
 
   const [isOpenAddDish, setIsOpenAddDish] = useState(false);
-  const [hiddenColumns, setHiddenColumns] = useState(['']);
-
-  const toggleColumn = (column: string) => {
-    if (hiddenColumns.includes(column)) {
-      setHiddenColumns(hiddenColumns.filter((v) => v !== column));
-    } else {
-      setHiddenColumns(hiddenColumns.concat(column));
-    }
-  };
+  const [concreteColumns, setConcreteColumns] = useState(COLUMNS_NAME);
 
   const loadDishes = async () => {
     const result = await getAllDishes();
@@ -76,14 +60,17 @@ export const Home = () => {
     ...DEFAULT_OPTIONS,
     striped: true,
   });
-  const customTheme = {
-    Table: `
+
+  const theme = useTheme([
+    chakraTheme,
+    {
+      Table: `
       --data-table-library_grid-template-columns:  64px repeat(5, minmax(0, 1fr));
 
       margin: 16px 0px;
     `,
-  };
-  const theme = useTheme([chakraTheme, customTheme]);
+    },
+  ]);
 
   const pagination = usePagination(data, {
     state: {
@@ -94,29 +81,22 @@ export const Home = () => {
 
   const [search, setSearch] = useState('');
 
-  useCustom('search', data, {
-    state: { search },
-    onChange: onSearchChange,
-  });
-
-  function onSearchChange(action, state) {
-    pagination.fns.onSetPage(0);
-  }
-
-  const [isHide, setHide] = useState(false);
-
-  useCustom('filter', data, {
-    state: { isHide },
-    onChange: onFilterChange,
-  });
-
-  function onFilterChange(action, state) {
-    pagination.fns.onSetPage(0);
-  }
-
   const handleActive = async (id: number, payload: Dish) => {
-    const res = await updateDish(id, payload);
-    console.log('res', res);
+    try {
+      await updateDish(id, payload);
+      await loadDishes();
+      toastChakraHook({
+        title: 'Prato atualizado',
+        description: `O prato foi atualizado`,
+        status: 'success',
+      });
+    } catch (err) {
+      toastChakraHook({
+        title: 'Erro',
+        description: `Ocorreu um erro ao atualizar o prato`,
+        status: 'success',
+      });
+    }
   };
 
   const sort = useSort(
@@ -153,7 +133,7 @@ export const Home = () => {
     node.name.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const COLUMNS = COLUMNS_DISHES(hiddenColumns, handleActive);
+  const COLUMNS = COLUMNS_DISHES(concreteColumns, handleActive);
 
   const addNewDish = async (input: CreateDishDto) => {
     try {
@@ -166,21 +146,21 @@ export const Home = () => {
   };
 
   return (
-    <Box px={4}>
+    <Box p={8}>
       <DishFormModal
         isOpen={isOpenAddDish}
         onClose={() => setIsOpenAddDish(false)}
         onSubmit={addNewDish}
       />
 
-      <HStack>
-        <InputGroup>
+      <HStack w="100%" justifyContent="center" mb={8}>
+        <InputGroup w="50%">
           <InputLeftElement
             pointerEvents="none"
             children={<FaSearch style={{ color: '#4a5568' }} />}
           />
           <Input
-            placeholder="Procure nome de pratos"
+            placeholder="Procure por nome de pratos"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
@@ -192,18 +172,10 @@ export const Home = () => {
         >
           Novo prato
         </Button>
-      </HStack>
-
-      <HStack gap={4} px={4} mt={4} mb={10}>
-        <Text fontWeight={700}>Colunas:</Text>
-        {Object.values(TABLE_LABELS_COLUMN_MAPPER).map((item) => (
-          <Checkbox
-            isChecked={!hiddenColumns.includes(item)}
-            onChange={() => toggleColumn(item)}
-          >
-            {item}
-          </Checkbox>
-        ))}
+        <MenuFilterColumns
+          columns={concreteColumns}
+          setColumns={setConcreteColumns}
+        />
       </HStack>
 
       <Box p={3} borderWidth="2px" borderRadius="xl">
@@ -211,7 +183,7 @@ export const Home = () => {
           columns={COLUMNS}
           data={{ ...data, nodes: modifiedNodes }}
           theme={theme}
-          layout={{ hiddenColumns }}
+          layout={{ concreteColumns }}
           sort={sort}
           pagination={pagination}
         />

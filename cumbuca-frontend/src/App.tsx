@@ -5,7 +5,10 @@ import { AppRoutes } from './routes/routes';
 
 function App() {
   return (
-    <ChakraProvider theme={theming}>
+    <ChakraProvider
+      theme={theming}
+      toastOptions={{ defaultOptions: { isClosable: true, duration: 4000 } }}
+    >
       <Box
         sx={{
           width: '100%',
